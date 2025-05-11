@@ -1,0 +1,51 @@
+<!--JS practicing classes/objects, Assignment 3-->
+<!--inputs: integers-->
+<!--outputs: various sets of integers and their union, intersection, difference, class data, etc. -->
+<!--creation date: 2/21/25-->
+<!DOCTYPE html> <!--I have reused a skeleon of this code from the previous assignment-->
+<html lang="en" dir="ltr"> <!--this establishes the start of html and that we are using english and letters-->
+<head> <!--head establishes what is shown on the bowser tab-->
+    <meta charset="utf-8"> <!--character set establishment-->
+    <title>elizas go ku page!</title> <!--setting the tab title, I wonder how they include logos-->
+</head> <!--ending of head html section-->
+
+<tab-panel> <!--this is a DOM node that holds 4 divs-->
+<div data-tabname="Rock">Rock ...</div> <!--first div with name "rock" and holds text Rock...-->
+<div data-tabname="Chalk">Rock Chalk ...</div> <!--second div with name "Chalk" and holds text Rock Chalk ...-->
+<div data-tabname="Jayhawk">Rock Chalk Jayhawk ...</div> <!--third div with name "Jayhawk" and holds text Rock Chalk Jayhawk ...-->
+<div data-tabname="Go KU!">Rock Chalk Jayhawk - Go KU!</div> <!--fourth div with name "Go KU!" and holds text Rock Chalk Go KU!...-->
+</tab-panel> <!--end of DOM node tab panel -->
+<script> //start of JS code 
+function asTabs(node) //function we were given called asTabs that takes a node
+{   let divs=node.querySelectorAll("div"); //get all divs from within the node and i hope its magically an itterable  
+    let allTabs=document.createElement("div"); //this is like an array to store all our tabs at once; suggested by chatGPT
+    buttons=[]; //this will hold all button elements; this is so we can iterate through them, the dov above is so we can group the buttons together and put them before all nodes 
+    for (let i=0; i<divs.length; i++) //for loop that iterates through list of divs 
+    {   tab=document.createElement("button"); //make a button; referance w3schools 
+        tab.innerText=divs[i].getAttribute("data-tabname"); //can make inner text of button be the data-tabname by getting that specific div's attraibute (I hope those divs are an iterable); referance w3schools 
+        //document.body.appendChild(tab); //put the button we made onto the doc; referance w3schools 
+        if (i==0) tab.style.color='red'; //make the first button red
+        else tab.style.color='blue'; //make all other buttons blue 
+        allTabs.appendChild(tab); //store button in our div so we can put it on the page later 
+        buttons.push(tab); //store button in array so we can access it 
+        allTabs.appendChild(tab); //store button in a div so we can put it at the top later 
+        
+        function ifClicked() //this function reacts if the button is clicked; referance w3schools; chatGPT guided me to put this in the for loop (it wasnt working otherwise)
+        {   for (let j=0; j<divs.length; j++) //loop through all the buttons again to reset them 
+            {   divs[j].style.display="none"; //get rid of all div text 
+                buttons[j].style.color="blue"; } //and make the buttons blue 
+        
+            divs[i].style.display="block"; //this is opposite of display none; referance stack overflow 
+            buttons[i].style.color="red"; //makes specifically the button that detected a click to be red 
+            
+        }
+        tab.addEventListener("click", ifClicked); //this will listen for a click to happen on any of the buttons; referance w3schools 
+    }
+    document.body.insertBefore(allTabs, document.body.firstChild); //this will insert the group of tabs at the very top before all other nodes; referance stackoverflow 
+    for (let i=1; i<divs.length; i++) //this function will make all divs hide thier text unless clicked 
+    {   divs[i].style.display="none"; } //this is what sets the specific div to display itself as "none" 
+}
+asTabs(document.querySelector("tab-panel")); //function call to asTabs, gets the node using query Selector 
+</script> <!--end of JS -->
+</body> <!--ending the main text for our page-->
+</html> <!--establishes end of HTML-->

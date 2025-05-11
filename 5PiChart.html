@@ -1,0 +1,77 @@
+<!--JS and HTML pi charts Assignment 5-->
+<!--inputs: n/a-->
+<!--outputs: pi chart -->
+<!--creation date: 3/14/25-->
+<!DOCTYPE html> <!--I have reused a skeleon of this code from the previous assignment-->
+<html lang="en" dir="ltr"> <!--this establishes the start of html and that we are using english and letters-->
+<head> <!--head establishes what is shown on the bowser tab-->
+    <meta charset="utf-8"> <!--character set establishment-->
+    <title>pi chart</title> <!--setting the tab title, I wonder how they include logos-->
+</head> <!--ending of head html section-->
+<body> <!--starting the body of our text-->
+    <canvas width="1000" height="500"></canvas> <!--making canvas to draw on-->
+    <script> //start of JS 
+        const results = [ //declares dataset called results 
+        {name: "Very Happy", count: 63, color: "lightblue"}, //declares name, value, and color 
+        {name: "Happy", count: 104, color: "blue"}, //declares name, value, and color 
+        {name: "Neutral", count: 87, color: "green"}, //declares name, value, and color 
+        {name: "Unhappy", count: 36, color: "lightgreen"}, //declares name, value, and color 
+        {name: "Very Unhappy", count: 26, color: "pink"}, //declares name, value, and color 
+        {name: "No comment", count: 18, color: "silver"} //declares name, value, and color 
+        ]; //closing brackets for results 
+
+        let cx = document.querySelector("canvas").getContext("2d"); //selects the canvas as cx 
+        let total = results.reduce((sum, {count}) => sum + count, 0); //gets total by using reduce function and summing everything 
+        
+        let currentAngle = -0.5 * Math.PI; //start at the top of the circle 
+        for (let result of results) { //for loop that goes through each element in results... 
+            let sliceAngle = (result.count / total) * 2 * Math.PI; //gets the ratio of the arc compared to total circle 
+            cx.beginPath(); //starts drawing 
+            cx.arc(200, 200, 100, currentAngle, currentAngle + sliceAngle); //draws arc using center 100,100 and rad=100 and from current angle goes clockwise 
+            cx.lineTo(200, 200); //goes back to center to close pie slice 
+            cx.fillStyle = result.color; //declares fill color with respective color from results 
+            cx.fill(); //fills pie slice
+
+            let xrad=170; //x radius for text 
+            let yrad=120; //y radius for text 
+            if (sliceAngle>Math.PI/2) xrad=150; //if it goes too far the text gets really far from its slice so adjust it 
+            cx.fillStyle="gray"; //color of text 
+            cx.fillText(result.name, 200+(xrad*Math.cos(currentAngle+sliceAngle/2)), 200+yrad*Math.sin(currentAngle+sliceAngle/2)); //specifies the text and its position 
+            currentAngle += sliceAngle; //incriments the current angle to draw the next slice 
+        }
+        cx.fillStyle="gray"; //color fill for text 
+        cx.font = "20px Arial"; //size of text for pie label 
+        cx.fillText("dataset 1", 150, 50); //specifies text and position 
+
+        const results2 = [ //declares dataset called results 
+        {name: "Satisfied", count: 213, color: "lightblue"}, //declares name, value, and color 
+        {name: "Neutral", count: 927, color: "green"}, //declares name, value, and color 
+        {name: "Unsatisfied", count: 463, color: "lightgreen"}, //declares name, value, and color 
+        {name: "No comment", count: 256, color: "silver"} //declares name, value, and color 
+        ]; //closing brackets for results 
+
+        let total2 = results2.reduce((sum, {count}) => sum + count, 0); //gets total by using reduce function and summing everything 
+
+        let currentAngle2 = -0.5 * Math.PI; //start at the top of the circle 
+        for (let result of results2) { //for loop that goes through each element in results...
+            let sliceAngle2 = (result.count / total2) * 2 * Math.PI; //gets the ratio of the arc compared to total circle 
+            cx.beginPath(); //starts drawing 
+            cx.arc(700, 200, 100, currentAngle2, currentAngle2 + sliceAngle2); //draws arc using center 100,100 and rad=100 and from current angle goes clockwise 
+            cx.lineTo(700, 200); //goes back to center to close pie slice 
+            cx.fillStyle = result.color; //declares fill color with respective color from results 
+            cx.fill(); //fills pie slice
+
+            let xrad2=190; //x radius for text 
+            let yrad2=120; //y radius for text 
+            if (sliceAngle2>Math.PI/2) xrad2=130; //if it goes too far the text gets really far from its slice so adjust it 
+            cx.fillStyle="gray"; //color of text 
+            cx.font = "12px Arial"; //resets the text from the last decleration for the header 
+            cx.fillText(result.name, 700+(xrad2*Math.cos(currentAngle2+sliceAngle2/2)), 200+yrad2*Math.sin(currentAngle2+sliceAngle2/2)); //specifies the text and its position 
+            currentAngle2 += sliceAngle2; //incriments the current angle to draw the next slice 
+        }
+        cx.fillStyle="gray"; //color fill for text 
+        cx.font = "20px Arial"; //size of text for pie label 
+        cx.fillText("dataset 2", 650, 50); //specifies the text and its position 
+    </script> <!--ending of JS script-->
+</body> <!--ending the main text for our page-->
+</html> <!--establishes end of HTML-->

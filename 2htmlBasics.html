@@ -1,0 +1,60 @@
+<!--small HTML with javascript insert, extercises 2.1-2.3-->
+<!--inputs: n/a-->
+<!--outputs: a triangle of rows of # starting with 1 # and ending with 10 #s; divisibility of all numbers 1-100 by 4,7, and both; -->
+<!--sources: https://eloquentjavascript.net/02_program_structure.html https://www.w3schools.com/js/js_loop_for.asp https://www.google.com/search?client=firefox-b-1-e&q=how+to+print+onto+webpage+usin+javascript+ -->
+<!--creation date: 1/24/25-->
+<!DOCTYPE html> <!--I have reused a skeleon of this code from the previous assignment-->
+<html lang="en" dir="ltr"> <!--this establishes the start of html and that we are using english and letters-->
+<head> <!--head establishes what is shown on the bowser tab-->
+    <meta charset="utf-8"> <!--character set establishment-->
+    <title>hello world!</title> <!--setting the tab title, I wonder how they include logos-->
+</head> <!--ending of head html section-->
+
+  <body> <!--starting the main text for our page-->
+    <script>for (let line = "#"; line.length < 11; line += "#") document.write(line+"<br>");</script> <!--functtion for 2.1 referance eloquent javascript, i had it go to 11 to match the example which had 10 # in bottom row-->
+    <br> <!--break for space-->
+    <br> <!--break for space-->
+    <script> //<!--TLDR this script prints all numbers 1-100 unless they are divible by both 4 and 7, divibly by 4, or divisible by 7-->
+      for (let n=1; n<=100; n++) //for loop that starts at 1 and incriments up to 100 
+        if (n%4==0 && n%7==0) //first if statment checks if number is divisibly by both 4 AND 7 
+          document.write("divisible by both 4 and 7 <br>"); //if true then prints to HTML the given statment
+        else if (n%4==0) //checks if divisible b just 4
+          document.write("divisible by 4 <br>"); //if true then prints to HTML the given statment
+        else if (n%7==0) //checks if divisible b just 7
+          document.write("divibible by 7 <br>"); //if true then prints to HTML the given statment
+        else //if no other options are hit then just prints number
+          document.write(n+"<br>"); //if no other options are hit then just prints number
+    </script>
+    <br> <!--break for space-->
+    <br> <!--break for space-->
+    <script> //this script will print a grid of spaces and * of size 8/2 by 8 and 14/2 by 14, this code is taken and modified from the above source eloquent javascript 
+      let size1 = 8; //size predefined to limit the grid generation 
+      let board1 = ""; //making first grid empty to edit it later 
+      document.write("size: "+size1+"<br>"); //this will print the size to the page as asked in assignment 
+      for (let y = 0; y < size1; y++) //for loop that goes from 0 to 7
+      {//bracket to encoupas the for loop 
+        for (let x = 0; x < size1; x++) //for loop that goes from 0 to 7
+        { //bracket to encoupas the for loop 
+          if ((x + y) % 2 == 0) //if the sum of loop iterations is even...
+            board1 += " "; //...add a space
+          else //if the sum of the loop iterations is odd...
+            board1 += "*"; //add a * 
+        }//bracket to encoupas the for loop 
+        board1 += "<br>"; //once inner loop is done add a newline
+      }//bracket to encoupas the for loop 
+      document.write(board1+"<br>"); //print the finished grid/board 
+
+      let size2=14; //second defined size in assignment 
+      let board2=""; //second grid for the assignment 
+      document.write("size: "+size2+"<br>"); //this will print the size to the page as asked in assignment 
+      for (let x=0; x<size2; x++) //for loop that goes from 0 to 14
+        {for (let y=0; y<size2; y++) //for loop that goes from 0 to 14 
+          {if ((x+y)%2==0) //if the sum of loop iterations is even...
+            board2+=" "; //...add a space 
+          else board2+="*"; }//if the sum of the loop iterations is odd add a * 
+        board2+="<br>"; } //once inner loop is done add a newline
+      document.write(board2); //print the finished grid/board 
+
+</script>
+  </body> <!--ending the main text for our page-->
+</html> <!--establishes end of HTML-->

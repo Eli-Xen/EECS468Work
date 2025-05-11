@@ -1,0 +1,367 @@
+<!--JS practicing classes/objects, Assignment 3-->
+<!--inputs: integers-->
+<!--outputs: various sets of integers and their union, intersection, difference, class data, etc. -->
+<!--creation date: 2/11/25-->
+<!DOCTYPE html>
+<!--I have reused a skeleon of this code from the previous assignment-->
+<html lang="en" dir="ltr" data-darkreader-mode="dynamic" data-darkreader-scheme="dark"><!--this establishes the start of html and that we are using english and letters--><head>
+
+
+<!--there is insert dump that happened when I tested this file in my browser, I have an extension called darkreader and I think it did this. Please ignore this and go to line 280-->
+
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen">.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, img.Wirisformula, a[data-testid="headerMediumLogo"]>svg, .d2l-navigation-link-image-container, .d2l-iframe-loading-container {
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+}</style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}
+[data-darkreader-inline-stopcolor] {
+  stop-color: var(--darkreader-inline-stopcolor) !important;
+}
+[data-darkreader-inline-bg] {
+  background: var(--darkreader-inline-bg) !important;
+}
+[data-darkreader-inline-invert] {
+    filter: invert(100%) hue-rotate(180deg);
+}</style><style class="darkreader darkreader--variables" media="screen">:root {
+   --darkreader-neutral-background: var(--darkreader-background-ffffff, #181a1b);
+   --darkreader-neutral-text: var(--darkreader-text-000000, #e8e6e3);
+   --darkreader-selection-background: var(--darkreader-background-0060d4, #004daa);
+   --darkreader-selection-text: var(--darkreader-text-ffffff, #e8e6e3);
+}</style><style class="darkreader darkreader--root-vars" media="screen"></style><style class="darkreader darkreader--user-agent" media="screen">@layer {
+html {
+    background-color: var(--darkreader-background-ffffff, #181a1b) !important;
+}
+html {
+    color-scheme: dark !important;
+}
+iframe {
+    color-scheme: dark !important;
+}
+html, body {
+    background-color: var(--darkreader-background-ffffff, #181a1b);
+}
+html, body {
+    border-color: var(--darkreader-border-4c4c4c, #736b5e);
+    color: var(--darkreader-text-000000, #e8e6e3);
+}
+a {
+    color: var(--darkreader-text-0040ff, #3391ff);
+}
+table {
+    border-color: var(--darkreader-border-808080, #545b5e);
+}
+mark {
+    color: var(--darkreader-text-000000, #e8e6e3);
+}
+::placeholder {
+    color: var(--darkreader-text-a9a9a9, #b2aba1);
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: var(--darkreader-background-faffbd, #404400) !important;
+    color: var(--darkreader-text-000000, #e8e6e3) !important;
+}
+::selection {
+    background-color: var(--darkreader-background-0060d4, #004daa) !important;
+    color: var(--darkreader-text-ffffff, #e8e6e3) !important;
+}
+::-moz-selection {
+    background-color: var(--darkreader-background-0060d4, #004daa) !important;
+    color: var(--darkreader-text-ffffff, #e8e6e3) !important;
+}
+}</style> <!--head establishes what is shown on the bowser tab-->
+    <meta charset="utf-8"> <!--character set establishment-->
+    <title>468 Assign 3</title> <!--setting the tab title, I wonder how they include logos-->
+<meta name="darkreader" content="dcce2655c9e24bacb1dfdca7bd78ff3d"><style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: var(--darkreader-background-ffd76e, #684b00) !important;
+    border-color: var(--darkreader-background-c59d00, #9e7e00) !important;
+    color: var(--darkreader-text-302505, #d7d4cf) !important;
+}
+#vimvixen-console-frame {
+    color-scheme: light !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1,
+.nfe-quote-text {
+    color: var(--darkreader-neutral-text) !important;
+}
+gr-main-header {
+    background-color: var(--darkreader-background-add8e6, #1b4958) !important;
+}
+.tou-z65h9k,
+.tou-mignzq,
+.tou-1b6i2ox,
+.tou-lnqlqk {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.tou-75mvi {
+    background-color: var(--darkreader-background-cfecf5, #0f3a47) !important;
+}
+.tou-ta9e87,
+.tou-1w3fhi0,
+.tou-1b8t2us,
+.tou-py7lfi,
+.tou-1lpmd9d,
+.tou-1frrtv8,
+.tou-17ezmgn {
+    background-color: var(--darkreader-background-f5f5f5, #1e2021) !important;
+}
+.tou-uknfeu {
+    background-color: var(--darkreader-background-faedda, #432c09) !important;
+}
+.tou-6i3zyv {
+    background-color: var(--darkreader-background-85c3d8, #245d70) !important;
+}
+div.mermaid-viewer-control-panel .btn {
+    background-color: var(--darkreader-neutral-background);
+    fill: var(--darkreader-neutral-text);
+}
+svg g rect.er {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.entityBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxOdd {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxEven {
+    fill: var(--darkreader-selection-background);
+    fill-opacity: 0.8 !important;
+}
+svg rect.er.relationshipLabelBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g g.nodes rect,
+svg g g.nodes polygon {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.task {
+    fill: var(--darkreader-selection-background) !important;
+}
+svg line.messageLine0,
+svg line.messageLine1 {
+    stroke: var(--darkreader-neutral-text) !important;
+}
+div.mermaid .actor {
+    fill: var(--darkreader-neutral-background) !important;
+}
+mitid-authenticators-code-app > .code-app-container {
+    background-color: white !important;
+    padding-top: 1rem;
+}
+iframe#unpaywall[src$="unpaywall.html"] {
+    color-scheme: light !important;
+}
+select option {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+body#tumblr {
+    --darkreader-bg--secondary-accent: 31, 32, 34 !important;
+    --darkreader-bg--white: 23, 23, 23 !important;
+    --darkreader-text--black: 228, 224, 218 !important;
+}
+:host {
+    --d2l-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-button-icon-background-color-hover: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-color-ferrite: var(--darkreader-neutral-text) !important;
+    --d2l-color-sylvite: var(--darkreader-bg--d2l-color-sylvite) !important;
+    --d2l-dropdown-background-color: var(--darkreader-neutral-background) !important;
+    --d2l-dropdown-border-color: var(--darkreader-border--d2l-color-mica) !important;
+    --d2l-input-backgroud-color: var(--darkreader-neutral-background) !important;
+    --d2l-menu-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-tooltip-background-color: var(--darkreader-neutral-background) !important;
+    --d2l-tooltip-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+:host([_floating]) .d2l-floating-buttons-container {
+    background-color: var(--darkreader-neutral-background) !important;
+    border-top-color: var(--darkreader-border--d2l-color-mica) !important;
+    opacity: 0.88 !important;
+}
+d2l-card {
+    background: var(--darkreader-neutral-background) !important;
+    border-color: var(--darkreader-border--d2l-color-gypsum) !important;
+}
+d2l-dropdown-content > div,
+d2l-menu-item {
+    background-color: var(--darkreader-neutral-background) !important;
+    border-radius: 10px !important;
+}
+d2l-empty-state-simple {
+    border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-button-filter > ul > li > a.vui-button {
+    border-color: var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-label-text:has(.d2l-button-subtle-content):hover,
+.d2l-label-text:has(.d2l-button-subtle-content):focus,
+.d2l-label-text:has(.d2l-button-subtle-content):active {
+    background-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-navigation-centerer {
+    color: inherit !important;
+}
+.d2l-tabs-layout {
+    border-color: var(--darkreader-border--d2l-color-gypsum) !important;
+}
+.d2l-input,
+.d2l-calendar-date,
+.d2l-htmleditor-container {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.d2l-collapsible-panel {
+    border: 1px solid var(--darkreader-border--d2l-color-mica) !important;
+    border-radius: 0.4rem !important;
+}
+.d2l-collapsible-panel-divider {
+    border-bottom: 1px solid var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-w2d-flex {
+    border-bottom: 2px solid var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-collapsible-panel scrolled,
+.d2l-collapsible-panel-header,
+.d2l-w2d-collection-fixed {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.d2l-loading-spinner-bg {
+    fill: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-loading-spinner-bg-stroke {
+    stroke: var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-loading-spinner-wrapper svg path,
+.d2l-loading-spinner-wrapper svg circle {
+    fill: var(--darkreader-neutral-background) !important;
+}
+embed[type="application/pdf"] { filter: invert(100%) contrast(90%); }</style></head> <!--ending of head html section-->
+
+  <body> <!--starting the main text for our page-->
+    <p id="group1"></p> 
+    <p id="group2"></p>
+    <p id="has5"></p>
+    <p id="has3"></p>
+    <p id="union"></p>
+    <p id="intersection"></p>
+    <p id="difference"></p>
+    <p id="group1del1"></p>
+    <p id="group2del2"></dipv>
+    
+    <script>//JS code starts 
+      class Group //declaring a class called Group 
+      {constructor() {this.set=[]} //making constructor that makes an array called set (empty for now)
+        add(num) //method called add that takes param called num, it will check if an element aleady exists in set array and if not add it 
+        { if (!this.has(num)) //makes call to method "has" to check if num is already in the set...
+            this.set.push(num);//...if false then add num to array 
+        }//closing bracket for add method 
+
+        delete(num) //method called delete that will check for an element and when found wil splice the array to take it out 
+        { for (let i=0; i<this.set.length; i++) //for loop that goes through 0-length of array 
+          { if (num==this.set[i]) //if num we want to delete is at current index in set...
+              {this.set.splice(i, 1); break; } //...then splice array to remove it; splice is array method that removes element at index i "1" times, this function was suggeseted my google search AI for taking an element out of array 
+          }//closing bracket for loop 
+        } //closing bracket for method
+
+        has(num) //method called has that checks if an element is already present in set array 
+        { for (let i=0; i<this.set.length; i++) //for loop 0-length of set 
+          { if (num==this.set[i]) //if num is found at current index i of set..
+              return true; //...return true 
+          }//closing bracket for loop 
+          return false; //if loop finishes and doesnt find match (return true) then return false since nothing was found 
+        }//closing bracket for method
+
+        union(set2) //this method adds all contents of the current set and adds it to a new Group object, then does the same with the given set2, this makes a union becuase of the logic of add 
+        { let unionSet=new Group(); //creating new group object to hold the union 
+          for (let i=0; i<this.set.length; i++) //for 0-length of current set... 
+            unionSet.add(this.set[i]) //...add each element 
+          for (let i=0; i<set2.set.length; i++) //for 0-length of given set... 
+            unionSet.add(set2.set[i]) //...add each element 
+          return unionSet; //return the unionSet object 
+        }//closing bracket for method
+
+        intersection(set2) //this method compares elements from both sets and only adds them to intersectionSet if elements match 
+        { let intersectionSet=new Group(); //new Group object to hold intersection 
+          for (let i=0; i<this.set.length; i++) //loop through our set
+          { for (let j=0; j<set2.set.length; j++) //loop through set given 
+            if (this.set[i]==set2.set[j]) //if elements match... 
+              intersectionSet.add(this.set[i]); //then add that element to the new set 
+          } //closing bracket for loop 
+          return intersectionSet; //return the intersectionSet object
+        } //closing bracket for method
+
+        diff(set2) //chatGPT explained that the difference of two sets is whats in set1 but not in set2, not the litteral subtraction of elements 
+        { let diffSet=new Group(); //new object to hold difference of two sets 
+          for (let i=0; i<this.set.length; i++) //for 0-length of current set...
+            if (set2.has(this.set[i])==false) //if .has() returns true for elements aka matching element 
+              diffSet.add(this.set[i]) //add element to new object 
+          return diffSet; //return new object 
+        } //closing bracket for method
+
+        toString() {return `{ ${this.set.join(", ")} }`;  } //method chatGPT gave me to stringify my objects since they werent printing, takes object.set and uses join method 
+      } //closing bracket for class Group 
+      
+      let group1=new Group(); //initiate new Group object 
+      let group2=new Group(); //initiate new Group object 
+      group1.add(1); //call add on group object and give it integer 
+      group1.add(2); //call add on group object and give it integer 
+      group1.add(3); //call add on group object and give it integer 
+
+      group2.add(2); //call add on group object and give it integer 
+      group2.add(3); //call add on group object and give it integer 
+      group2.add(5); //call add on group object and give it integer 
+      group2.add(2); //call add on group object and give it integer 
+      
+      //I was struggling with console.log() to display my object elements and chatGPT suggested to use document.getElementById(ID).innerHTML instead of console.log and I refferances slides on how to use that 
+      document.getElementById("group1").innerHTML=`contents of group 1: ${group1}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object 
+      document.getElementById("group2").innerHTML=`contents of group 2: ${group2}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object 
+      document.getElementById("has5").innerHTML=`group1.has(5): ${group1.has(5)}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object; makes call to object methods 
+      document.getElementById("has3").innerHTML=`group2.has(3): ${group2.has(3)}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object; makes call to object methods 
+      document.getElementById("union").innerHTML=`group1.union: ${group1.union(group2)}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object; makes call to object methods 
+      document.getElementById("intersection").innerHTML=`group1.intersection(group2) ${group1.intersection(group2)}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object; makes call to object methods 
+      document.getElementById("difference").innerHTML = `group1.difference(group2): ${group1.diff(group2)}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object; makes call to object methods 
+      group1.delete(1) //call delete method to attempt to delete 1 from group1 
+      document.getElementById("group1del1").innerHTML=`contents of group 1 after delete 1: ${group1}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object; makes call to object methods 
+      group2.delete(1) //call delete method to attempt to delete 1 from group2 
+      document.getElementById("group2del2").innerHTML=`contents of group 2 after delete 2: ${group2}`; //retrives/points to the paragraph element we made earilier with given ID, then assign that paragraph element to display text and object; makes call to object methods 
+
+    </script> <!--end of javascript code tag -->
+</body><!--ending the main text for our page--></html>
+<!--establishes end of HTML-->

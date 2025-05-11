@@ -1,0 +1,30 @@
+<!--small HTML with javascript insert that has two hello world! buttons that give alter and change paragraph-->
+<!--inputs: click of mouse on button from user-->
+<!--outputs: browser window with two buttons, one button outputs an alters and other one changes paragraph-->
+<!--collaborators: eliza malyshev-->
+<!--sources: w3schools https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert and https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_toggle_text-->
+<!--creation date: 1/19/25-->
+<!DOCTYPE html> <!--I have reused a skeleon of this code from a previous HTML webpage I made, I kept most things but changed the title and body and removed previous conent-->
+<html lang="en" dir="ltr"> <!--this establishes the start of html and that we are using english and letters-->
+<head> <!--head establishes what is shown on the bowser tab-->
+    <meta charset="utf-8"> <!--character set establishment-->
+    <title>hello world!</title> <!--setting the tab title, I wonder how they include logos-->
+</head> <!--ending of head html section-->
+
+  <body> <!--starting the main text for our page-->
+    <button onclick="test1()"> test 1 for hello world! </button> <!--button function call establishment on user click and name of button-->
+    <script>function test1() {alert("hello world!");}</script> <!--short javascript insert of function and its content, I put it on 1 line becuase its so simple. I looked at a w3schools example for this: https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert-->
+    <br> <!--break between buttons so the next one appears on a new line-->
+    <br> <!--break between buttons so the next one appears on a new line-->
+    
+    <div id="nothing"></div> <!--a div (section) in html and its own ID, I put no text so that ID can later be identified and put text in there-->
+    <!--I recognize div and div ID from a project I worked on for hackathon once so I know how they work generally-->
+    <button onclick="test2()"> test 2 for hello world! </button><!--button function call establishment on user click and name of button-->
+    <script>function test2(){ //<!--javascript insert of second function and its content, I could have done them together but didnt so it would be clear which function is attached to which button-->
+      var change=document.getElementById("nothing"); //<!--makes varaible and assigns content of my "nothing" div ID to that variable-->
+      change.innerHTML="hello <br><br> world!<br><br>"; //this changes the divID variable to insert content of hello world! with a break in between 
+    } //<!--ending bracket for function test2() I referanced w3schools for test2(): https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_toggle_text-->
+    </script> <!--establishes end of javascript section -->
+    
+  </body> <!--ending the main text for our page-->
+</html> <!--establishes end of HTML-->
